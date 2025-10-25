@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt"
 
-// hashSync untuk enkripsi 
 export const hash = (plainText) => {
     return bcrypt.hashSync(plainText, 10)
 }
