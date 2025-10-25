@@ -5,13 +5,14 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const api = express.Router()
 
-api.get('/konten', kontenController.listKonten)
-api.post('/konten', kontenController.createNewKonten)
-api.put('/konten/:id', kontenController.updateKonten)
-api.delete('/konten/:id', kontenController.deleteKonten)
-
 api.post('/register', authController.register);
 api.post('/login', authController.login);
+api.get('/profile', protect, authController.getProfile);
+
+api.get('/konten', protect, kontenController.listKonten)
+api.post('/konten', protect, kontenController.createNewKonten)
+api.put('/konten/:id', protect, kontenController.updateKonten)
+api.delete('/konten/:id', protect, kontenController.deleteKonten)
 
 
 export default api;
